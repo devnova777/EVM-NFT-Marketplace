@@ -1,38 +1,112 @@
-This is a [Next.js](https://nextjs.org/) project. Full process and video lectures how to create the application can be found here: [NFT Marketplace in React, Typescript & Solidity - Full Guide
-](https://academy.eincode.com/courses/nft-marketplace-in-react-js-next-typescript-full-guide)
+## 🖼️ NFT Marketplace — Built with Next.js, TypeScript & Solidity
 
-## Overview
+This project is a **full-stack NFT Marketplace** built using modern Web3 technologies.
+It allows users to **mint, list, and purchase NFTs** on a local or test blockchain network.
 
-Marketplace has dependencies on multiple technologies.
+> 🎓 Full tutorial available:
+> [NFT Marketplace in React, TypeScript & Solidity - Full Guide](https://academy.eincode.com/courses/nft-marketplace-in-react-js-next-typescript-full-guide)
 
-* [Pinata](https://app.pinata.cloud/) - store images, and NFT metadata
-* [Ganache](https://trufflesuite.com/ganache/) - private Blockchain, to run application localy
+---
 
-## To run the app
-1. run `npm install` to install dependencies
+## 🚀 Tech Stack
 
-2. In the root folder of the application create a `.env.development` file with following content:
+* **Frontend:** [Next.js](https://nextjs.org/), [React](https://reactjs.org/), [TypeScript](https://www.typescriptlang.org/)
+* **Smart Contracts:** [Solidity](https://soliditylang.org/), [Truffle](https://trufflesuite.com/)
+* **Blockchain Network:** [Ganache](https://trufflesuite.com/ganache/)
+* **File Storage & Metadata:** [Pinata](https://app.pinata.cloud/) (IPFS-based)
+* **Environment Management:** `.env.development`
 
+---
+
+## ⚙️ Getting Started
+
+### 1️⃣ Install Dependencies
+
+Run the following command in the root directory:
+
+```bash
+npm install
 ```
+
+---
+
+### 2️⃣ Configure Environment Variables
+
+Create a file named `.env.development` in the root directory and add:
+
+```bash
 NEXT_PUBLIC_NETWORK_ID=5777
 NEXT_PUBLIC_TARGET_CHAIN_ID=1337
 NEXT_PUBLIC_PINATA_DOMAIN=https://gateway.pinata.cloud
 
-SECRET_COOKIE_PASSWORD={your custom at least 32 characters long password!}
+SECRET_COOKIE_PASSWORD={your_32+_character_password}
 
-PINATA_API_KEY={your api key from pinata}
-PINATA_SECRET_API_KEY={your api secret key from pinata}
+PINATA_API_KEY={your_pinata_api_key}
+PINATA_SECRET_API_KEY={your_pinata_secret_api_key}
 ```
-* (your api pinata key has to allow `pinFileToIPFS` and `pinJSONToIPFS` rules)
 
-3. Then migrate a contract to Ganache, contract can be found in the `contracts` folder. It's called `NftMarket.sol`
+> 💡 Make sure your Pinata API keys have permissions for
+> `pinFileToIPFS` and `pinJSONToIPFS`.
 
-* To migrate the contract run `truffle migrate` in the terminal while Ganache network is setup and running.
+---
 
-* Do not forget to link `trufle-config.js` with Ganache, just go to `config` and click `Add Project`
+### 3️⃣ Deploy the Smart Contract
 
-* `keys.json` must be created if you want to deploy to Ropsten, if not, just remove import of `keys.json` from `trufle-config.js` and also comment out `ropsten` configuration
+The main contract is `NftMarket.sol` (located in the `contracts` folder).
+To deploy it locally:
 
-4. Now everything is setup and you can test out the app.
+```bash
+truffle migrate
+```
 
-* Run `npm run dev` in the terminal. App will run at `localhost:3000`
+Make sure **Ganache** is running and linked correctly:
+
+* Open Ganache → click **Add Project**
+* Select your project folder
+* Ensure `truffle-config.js` points to your Ganache network
+
+If you’re **not deploying to Ropsten**, remove the `keys.json` import and comment out the Ropsten configuration in `truffle-config.js`.
+
+---
+
+### 4️⃣ Run the Application
+
+After successful migration, start the development server:
+
+```bash
+npm run dev
+```
+
+Your app will be available at:
+
+```
+http://localhost:3000
+```
+
+---
+
+## ✅ Summary
+
+| Step | Action               | Description                            |
+| ---- | -------------------- | -------------------------------------- |
+| 1    | Install Dependencies | `npm install`                          |
+| 2    | Set Up Environment   | Create `.env.development`              |
+| 3    | Deploy Contracts     | `truffle migrate` with Ganache running |
+| 4    | Run App              | `npm run dev`                          |
+
+---
+
+## 🧩 Features
+
+* Mint and list NFTs
+* View and buy NFTs
+* Pin image and metadata to IPFS via Pinata
+* Local blockchain testing with Ganache
+
+---
+
+## 🛠️ Troubleshooting
+
+* **Contract not found:** Re-run `truffle migrate --reset`
+* **API errors:** Double-check your Pinata API keys
+* **Ganache issues:** Ensure Ganache network matches your Truffle config
